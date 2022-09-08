@@ -14,16 +14,27 @@ code {
 .min-vh-100 {
   min-height: 100vh !important;
 }
+.d-none {
+  display: none;
+}
+.captcha-label {
+  color: red;
+  height: 20px;
+  opacity: 0;
+}
+.op-1 {
+  opacity: 1;
+}
 /** registration styles **/
 .register-page {
-  background-image: url(https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80);
+  background-image: url(../img/background.jpg);
   padding: 0;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   background-size: cover;
-  background-position: 50%;
+  background-position: center;
 }
 .register-container {
   margin: auto;
@@ -40,7 +51,7 @@ code {
   --card-header-padding-y: 1rem;
   --card-header-padding-x: 0.5rem;
   text-align: center;
-  background-image: linear-gradient(195deg, #66bb6a 0%, #43a047 100%);
+  background-image: linear-gradient(201deg, #057b3a 0%, #2d9178 100%);
   box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(76 175 80 / 40%) !important;
   margin-top: -50px;
   padding: var(--card-header-padding-y) var(--card-header-padding-x);
@@ -71,16 +82,20 @@ code {
 }
 .register-input-group.filled .label {
   top: -0.7rem;
-  font-size: 0.7rem;
+  font-size: 1rem;
 }
 .register-input-group.focus .label {
   top: -0.7rem;
-  font-size: 0.7rem;
-  color: #e91e63;
+  font-size: 1rem;
+}
+.register-input-group .label-date {
+  top: -0.7rem;
+  font-size: 1rem;
 }
 /** input elements **/
 .register-input-group .input {
   display: block;
+  z-index: 10;
   width: 100%;
   padding: 0.5rem 0;
   font-size: 0.875rem;
@@ -92,7 +107,7 @@ code {
   background-size: 0 100%, 100% 100%;
   transition: 0.2s ease;
   border-radius: 0;
-  background-image: linear-gradient(0deg, #e91e63 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+  background-image: linear-gradient(0deg, #057b3a 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
 }
 .register-input-group input[type="date"] ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
 ::-webkit-datetime-edit-month-field:not([aria-valuenow]),

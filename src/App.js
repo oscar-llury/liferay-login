@@ -1,9 +1,13 @@
 import "./css/App.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import Recaptcha from "react-google-recaptcha";
 
 function App() {
   //the state of terms and conditions
   const [checked, setChecked] = useState(false);
+  //states for captcha
+  const captchaRef = useRef(null);
+  const [captchaError, setCaptchaError] = useState(false);
 
   /*
    * control the label goes up
@@ -29,9 +33,27 @@ function App() {
    * control the form submit
    */
   const submitForm = (e) => {
+    e.preventDefault();
     console.dir(e);
+    const token = captchaRef.current.getValue();
+    console.log(token);
+    if (token === "") {
+      //captcha not valid
+      setCaptchaError(true);
+    } else {
+      //save data
+      setCaptchaError(false);
+      captchaRef.current.reset();
+      document.querySelector("#registerForm").reset();
+    }
   };
-
+  const verifyCaptcha = (response) => {
+    if (response) {
+      setCaptchaError(false);
+    } else {
+      setCaptchaError(true);
+    }
+  };
   return (
     <div className="register-page min-vh-100">
       <div className="register-container">
@@ -40,13 +62,13 @@ function App() {
             <h1 className="">Registro</h1>
           </div>
           <div className="register-card-body">
-            <form className="register-form">
+            <form className="register-form" id="registerForm" onSubmit={submitForm}>
               <TextInput type="text" text="Nombre" addFocus={addFocus} removeFocus={removeFocus} />
 
               <TextInput type="text" text="Apellidos" addFocus={addFocus} removeFocus={removeFocus} />
 
               <div className="register-input-group">
-                <label className="label">Fecha de nacimiento</label>
+                <label className="label-date">Fecha de nacimiento</label>
                 <input type="date" className="input" aria-label="Fecha de nacimiento" onClick={addFocus} onBlur={removeFocus} required />
               </div>
 
@@ -57,7 +79,7 @@ function App() {
                   type="checkbox"
                   checked={checked}
                   id="flexCheckDefault"
-                  onChange={(e) => {
+                  onChange={() => {
                     setChecked(!checked);
                   }}
                   required
@@ -70,8 +92,14 @@ function App() {
                   </a>
                 </label>
               </div>
+
               <div className="register-input-group">
-                <button type="submit" className="register-submit" onSubmit={submitForm}>
+                <Recaptcha sitekey={process.env.REACT_APP_SITE_KEY} ref={captchaRef} onExpired={verifyCaptcha} onChange={verifyCaptcha} theme="light" />
+                <span className={`captcha-label ${captchaError ? "op-1" : ""}`}>Por favor, completa la verificación.</span>
+              </div>
+
+              <div className="register-input-group">
+                <button type="submit" className="register-submit">
                   Registrarse
                 </button>
               </div>
