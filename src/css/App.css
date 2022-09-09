@@ -1,0 +1,178 @@
+/** general styles **/
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --font: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: var(--font);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+.min-vh-100 {
+  min-height: 100vh !important;
+}
+.d-none {
+  display: none;
+}
+.captcha-label {
+  color: red;
+  height: 20px;
+  opacity: 0;
+}
+.op-1 {
+  opacity: 1;
+}
+/** registration styles **/
+.register-page {
+  background-image: url(../img/background.jpg);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+.register-container {
+  margin: auto;
+  --card-border-radius: 0.75rem;
+  width: 25%;
+}
+@media (max-width: 1400px) {
+  .register-container {
+    width: 30%;
+  }
+}
+@media (max-width: 1200px) {
+  .register-container {
+    width: 40%;
+  }
+}
+@media (max-width: 992px) {
+  .register-container {
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .register-container {
+    width: 70%;
+  }
+}
+@media (max-width: 576px) {
+  .register-container {
+    width: 85%;
+  }
+}
+.register-card {
+  background-color: white;
+  border-radius: var(--card-border-radius);
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+}
+.register-card-header {
+  --card-header-padding-y: 1rem;
+  --card-header-padding-x: 0.5rem;
+  text-align: center;
+  background-image: linear-gradient(201deg, #057b3a 0%, #2d9178 100%);
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(76 175 80 / 40%) !important;
+  margin-top: -50px;
+  padding: var(--card-header-padding-y) var(--card-header-padding-x);
+  border-radius: var(--card-border-radius);
+}
+.register-card-header h1 {
+  font-size: 1.5em;
+  margin: 0;
+  color: white;
+}
+.register-card-body {
+  margin: 2rem 0 0.5rem;
+}
+.register-input-group {
+  margin: 1.5rem 0 0;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+/** labels elements **/
+.register-input-group .label {
+  position: absolute;
+  top: 0.6125rem;
+  margin-left: 0;
+  transition: 0.2s ease all;
+}
+.register-input-group.filled .label {
+  top: -0.7rem;
+  font-size: 1rem;
+}
+.register-input-group.focus .label {
+  top: -0.7rem;
+  font-size: 1rem;
+}
+.register-input-group .label-date {
+  top: -0.7rem;
+  font-size: 1rem;
+}
+/** input elements **/
+.register-input-group .input {
+  display: block;
+  z-index: 10;
+  width: 100%;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: #495057;
+  border: none;
+  background: no-repeat bottom, 50% calc(100% - 1px);
+  background-size: 0 100%, 100% 100%;
+  transition: 0.2s ease;
+  border-radius: 0;
+  background-image: linear-gradient(0deg, #057b3a 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+}
+.register-input-group input[type="date"] ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+  color: transparent;
+  display: none;
+}
+.register-input-group input[type="date"] ::-webkit-input-placeholder {
+  color: white;
+  display: none;
+}
+.register-input-group .input:focus {
+  background-size: 100% 100%, 100% 100%;
+  outline: none;
+}
+/** terms and conditions **/
+.register-input-group .terms {
+  font-weight: 600;
+  color: #191919;
+  text-decoration: none;
+}
+.register-input-group .terms:hover {
+  text-decoration: underline;
+}
+/** submit button **/
+.register-input-group .register-submit {
+  padding: 0.75rem 0.25rem;
+  box-shadow: 0 3px 3px 0 rgb(52 71 103 / 15%), 0 3px 1px -2px rgb(52 71 103 / 20%), 0 1px 5px 0 rgb(52 71 103 / 15%);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0.5rem;
+  transition: all 0.15s ease-in;
+  background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
+  letter-spacing: 0;
+  text-transform: uppercase;
+  background-size: 150%;
+  background-position-x: 25%;
+  position: relative;
+  overflow: hidden;
+  -webkit-appearance: none;
+}
