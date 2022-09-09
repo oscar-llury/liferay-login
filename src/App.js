@@ -34,30 +34,36 @@ function App() {
    */
   const submitForm = (e) => {
     e.preventDefault();
-    console.dir(e);
     const token = captchaRef.current.getValue();
-    console.log(token);
     if (token === "") {
       //captcha not valid
       setCaptchaError(true);
     } else {
       //save data
       setCaptchaError(false);
-      const form = e.currentTarget;
-      let formData = new FormData(form);
-      console.dir(form);
-      console.dir(formData);
-      /*
+
       if (typeof Storage !== "undefined") {
-        sessionStorage.name = 
-       
-        document.getElementById("result").innerHTML = "You have clicked the button " + sessionStorage.clickcount + " time(s) in this session.";
+        //if localstorage is avaiable, save date
+        let formData = new FormData(e.currentTarget);
+
+        sessionStorage.name = formData.get("name");
+        sessionStorage.surname = formData.get("surname");
+        sessionStorage.birthday = formData.get("birthday");
+        sessionStorage.email = formData.get("email");
+        sessionStorage.termsconditions = formData.get("termsconditions");
+
+        let today = new Date();
+        let date = String(today.getDate()).padStart(2, "0") + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + today.getFullYear();
+        let time = String(today.getHours()).padStart(2, "0") + ":" + String(today.getMinutes()).padStart(2, "0") + ":" + String(today.getHours()).padStart(2, "0");
+        sessionStorage.date = formData.get(date + " " + time);
+        sessionStorage.time = Math.floor(new Date().getTime() / 1000);
+
+        captchaRef.current.reset();
+        document.querySelector("#registerForm").reset();
       } else {
-        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+        //local storage not avaiable
+        alert("Tu navegador no admite almacenamiento de sesión.");
       }
-*/
-      captchaRef.current.reset();
-      document.querySelector("#registerForm").reset();
     }
   };
   /*
@@ -80,29 +86,32 @@ function App() {
           </div>
           <div className="register-card-body">
             <form className="register-form" id="registerForm" onSubmit={submitForm}>
-              <TextInput type="text" text="Nombre" addFocus={addFocus} removeFocus={removeFocus} />
+              <TextInput type="text" text="Nombre" id="name" addFocus={addFocus} removeFocus={removeFocus} />
 
-              <TextInput type="text" text="Apellidos" addFocus={addFocus} removeFocus={removeFocus} />
+              <TextInput type="text" text="Apellidos" id="surname" addFocus={addFocus} removeFocus={removeFocus} />
 
               <div className="register-input-group">
-                <label className="label-date">Fecha de nacimiento</label>
-                <input type="date" className="input" aria-label="Fecha de nacimiento" onClick={addFocus} onBlur={removeFocus} required />
+                <label className="label-date" htmlFor="birthday">
+                  Fecha de nacimiento
+                </label>
+                <input type="date" className="input" name="birthday" id="birthday" aria-label="Fecha de nacimiento" onClick={addFocus} onBlur={removeFocus} required />
               </div>
 
-              <TextInput type="email" text="Email" addFocus={addFocus} removeFocus={removeFocus} />
+              <TextInput type="email" text="Email" id="email" addFocus={addFocus} removeFocus={removeFocus} />
 
               <div className="register-input-group">
                 <input
                   type="checkbox"
                   checked={checked}
-                  id="flexCheckDefault"
+                  id="termsconditions"
+                  name="termsconditions"
                   onChange={() => {
                     setChecked(!checked);
                   }}
                   required
                 />
 
-                <label htmlFor="flexCheckDefault">
+                <label htmlFor="termsconditions">
                   Acepto los{" "}
                   <a href="#" className="terms">
                     Términos y Condiciones
@@ -132,11 +141,13 @@ function App() {
  * Component for create the Input element groups
  * params: text:string type:"text"|"date"|"email" addFocus:function removeFocus:function
  */
-const TextInput = ({ text, type, addFocus, removeFocus }) => {
+const TextInput = ({ text, id, type, addFocus, removeFocus }) => {
   return (
     <div className="register-input-group">
-      <label className="label">{text}</label>
-      <input type={type} className="input" aria-label={text} onClick={addFocus} onBlur={removeFocus} required />
+      <label className="label" htmlFor={id}>
+        {text}
+      </label>
+      <input type={type} className="input" name={id} id={id} aria-label={text} onFocus={addFocus} onBlur={removeFocus} required />
     </div>
   );
 };
