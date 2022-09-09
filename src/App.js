@@ -55,7 +55,8 @@ function App() {
         let today = new Date();
         let date = String(today.getDate()).padStart(2, "0") + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + today.getFullYear();
         let time = String(today.getHours()).padStart(2, "0") + ":" + String(today.getMinutes()).padStart(2, "0") + ":" + String(today.getHours()).padStart(2, "0");
-        sessionStorage.date = formData.get(date + " " + time);
+        let stringDate = date + " " + time;
+        sessionStorage.date = stringDate;
         sessionStorage.time = Math.floor(new Date().getTime() / 1000);
 
         captchaRef.current.reset();
