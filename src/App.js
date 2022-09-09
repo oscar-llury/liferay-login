@@ -43,10 +43,26 @@ function App() {
     } else {
       //save data
       setCaptchaError(false);
+      const form = e.currentTarget;
+      let formData = new FormData(form);
+      console.dir(form);
+      console.dir(formData);
+      /*
+      if (typeof Storage !== "undefined") {
+        sessionStorage.name = 
+       
+        document.getElementById("result").innerHTML = "You have clicked the button " + sessionStorage.clickcount + " time(s) in this session.";
+      } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+      }
+*/
       captchaRef.current.reset();
       document.querySelector("#registerForm").reset();
     }
   };
+  /*
+   * function for set captcha validation state value
+   */
   const verifyCaptcha = (response) => {
     if (response) {
       setCaptchaError(false);
@@ -54,6 +70,7 @@ function App() {
       setCaptchaError(true);
     }
   };
+
   return (
     <div className="register-page min-vh-100">
       <div className="register-container">
