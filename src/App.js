@@ -10,7 +10,7 @@ function App() {
   const captchaRef = useRef(null);
   const [captchaError, setCaptchaError] = useState(false);
   //states for modal
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = useState(true);
   const [modalState, setModalState] = useState(true);
 
   /*
@@ -160,13 +160,13 @@ function App() {
           </span>
           {modalState ? (
             <>
-              <span className="title">Datos guardados correctamente</span>
+              <p className="title">Datos guardados correctamente</p>
               <p>Tus datos se han guardado correctamente en la sesión del navegador.</p>
               <p>Esta se borrará cuando cierres la pestaña actual.</p>
             </>
           ) : (
             <>
-              <span className="title">Se ha producido un error</span>
+              <p className="title">Se ha producido un error</p>
               <p>Puede deberse a que tu navegador no admite almacenamiento en sesión o no está habilidado la ejecución de JavaScript.</p>
             </>
           )}
