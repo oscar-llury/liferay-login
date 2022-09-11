@@ -10,7 +10,7 @@ function App() {
   const captchaRef = useRef(null);
   const [captchaError, setCaptchaError] = useState(false);
   //states for modal
-  const [modalShow, setModalShow] = useState(true);
+  const [modalShow, setModalShow] = useState(false);
   const [modalState, setModalState] = useState(true);
 
   /*
