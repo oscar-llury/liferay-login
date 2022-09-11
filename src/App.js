@@ -3,11 +3,15 @@ import { useState, useRef } from "react";
 import Recaptcha from "react-google-recaptcha";
 
 function App() {
-  //the state of terms and conditions
+  //the state for terms and conditions
   const [checked, setChecked] = useState(false);
+  const [termsShow, setTermsShow] = useState(false);
   //states for captcha
   const captchaRef = useRef(null);
   const [captchaError, setCaptchaError] = useState(false);
+  //states for modal
+  const [modalShow, setModalShow] = useState(false);
+  const [modalState, setModalState] = useState(true);
 
   /*
    * control the label goes up
@@ -59,11 +63,15 @@ function App() {
         sessionStorage.date = stringDate;
         sessionStorage.time = Math.floor(new Date().getTime() / 1000);
 
+        setModalState(true);
+        setModalShow(true);
+
         captchaRef.current.reset();
         document.querySelector("#registerForm").reset();
       } else {
         //local storage not avaiable
-        alert("Tu navegador no admite almacenamiento de sesión.");
+        setModalState(false);
+        setModalShow(false);
       }
     }
   };
@@ -122,10 +130,13 @@ function App() {
 
                 <label htmlFor="termsconditions">
                   Acepto los{" "}
-                  <a href="#" className="terms">
+                  <button type="button" className="terms" onClick={() => setTermsShow(!termsShow)}>
                     Términos y Condiciones
-                  </a>
+                  </button>
                 </label>
+                <div className={`termsconditions-text ${termsShow ? "" : "d-none"}`}>
+                  <p>Los datos recogidos en este formulario no se comparten con ninguna aplicación de terceros.</p>
+                </div>
               </div>
 
               <div className="register-input-group">
@@ -142,8 +153,24 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="modal-confirmation">
-        <div></div>
+      <div className={`modal ${modalShow ? "" : "d-none"}`}>
+        <div className="modal-content">
+          <span className="close" onClick={() => setModalShow(false)}>
+            &times;
+          </span>
+          {modalState ? (
+            <>
+              <span className="title">Datos guardados correctamente</span>
+              <p>Tus datos se han guardado correctamente en la sesión del navegador.</p>
+              <p>Esta se borrará cuando cierres la pestaña actual.</p>
+            </>
+          ) : (
+            <>
+              <span className="title">Se ha producido un error</span>
+              <p>Puede deberse a que tu navegador no admite almacenamiento en sesión o no está habilidado la ejecución de JavaScript.</p>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
