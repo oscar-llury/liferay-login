@@ -1,9 +1,13 @@
 # Formulario de Registro
 La aplicación de un Formulario de Registro ha sido desarrollada sobre el framework **React JS**, utilizando el gestor de paquetes **Node.js**.
 
-La aplicación en cuestión solicita al usuario la introducción de sus datos personales: nombre, apellidos, fecha de nacimiento y su email; además de solicitar la aceptación de unos Términos y Condiciones y una verificación Captcha. Posteriormente a la introducción de todos estos datos obligatorios, la información se guarda en la sesión del navegador. Ver Ilustración 1: captura de pantalla del formulario web.
+La aplicación en cuestión solicita al usuario la introducción de sus datos personales: nombre, apellidos, fecha de nacimiento y su email; además de solicitar la aceptación de unos Términos y Condiciones y una verificación Captcha. Posteriormente a la introducción de todos estos datos obligatorios, la información se guarda en la sesión del navegador.
 
-Además, se guardará junto a estos dos datos de marca de tiempo de envío del formulario: el valor time correspondiente a la marca de tiempo en formato UNIX y el valor date correspondiente a la marca de tiempo en formato legible UTC. Estos datos guardados pueden visualizarse desde la herramienta de inspeccionar, en la pestaña de Aplicación. Ver Ilustración 2: captura de pantalla de los datos guardados en sesión.
+Además, se guardará junto a estos dos datos de marca de tiempo de envío del formulario: el valor time correspondiente a la marca de tiempo en formato UNIX y el valor date correspondiente a la marca de tiempo en formato legible UTC. Estos datos guardados pueden visualizarse desde la herramienta de inspeccionar, en la pestaña de Aplicación. 
+
+![captura de pantalla de los datos guardados en sesión](https://github.com/oscar-llury/react-register-example/blob/master/images/datos-sesion.png)
+  
+  Ilustración 2: captura de pantalla de los datos guardados en sesión.
 
 ## Código fuente
 
