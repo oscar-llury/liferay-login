@@ -77,6 +77,14 @@ function App() {
       setCaptchaError(true);
     }
   };
+  /*
+   * function for set input date max value
+   */
+  const setMaxDate = () => {
+    let today = new Date();
+    let val = today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
+    return val;
+  };
 
   return (
     <div className="register-page min-vh-100">
@@ -95,7 +103,7 @@ function App() {
                 <label className="label-date" htmlFor="birthday">
                   Fecha de nacimiento
                 </label>
-                <input type="date" className="input" name="birthday" id="birthday" aria-label="Fecha de nacimiento" onClick={addFocus} onBlur={removeFocus} required />
+                <input type="date" className="input" name="birthday" id="birthday" min="1900-01-01" max={setMaxDate()} aria-label="Fecha de nacimiento" onClick={addFocus} onBlur={removeFocus} required />
               </div>
 
               <TextInput type="email" text="Email" id="email" addFocus={addFocus} removeFocus={removeFocus} />
@@ -133,6 +141,9 @@ function App() {
             </form>
           </div>
         </div>
+      </div>
+      <div className="modal-confirmation">
+        <div></div>
       </div>
     </div>
   );
